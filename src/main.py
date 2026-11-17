@@ -1,1 +1,3 @@
-print("Hello, World!")
+"""
+Główny plik aplikacji.
+"""

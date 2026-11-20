@@ -6,8 +6,6 @@ import abc  # noqa: F401
 
 import pygame  # noqa: F401
 
-import players  # noqa: F401
-
 
 class Disk:
     def __init__(self, color):

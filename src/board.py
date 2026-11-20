@@ -2,9 +2,11 @@
 Plik odpowiedzialny za implementację planszy gry.
 """
 
-import abc
-import pygame
-import players
+import abc  # noqa: F401
+
+import pygame  # noqa: F401
+
+import players  # noqa: F401
 
 
 class Disk:
@@ -39,7 +41,11 @@ class Board:
         raise NotImplementedError("TODO")
 
     def is_board_full(self):
-        raise NotImplementedError("TODO")
+        for row in self.board:
+            for cell in row:
+                if cell is None:
+                    return False
+        return True
 
     def check_winner(self):
         raise NotImplementedError("TODO")
@@ -48,14 +54,20 @@ class Board:
         raise NotImplementedError("TODO")
 
     def __str__(self):
-        raise NotImplementedError("TODO")
+        return self.__repr__()
 
     def __repr__(self):
-        raise NotImplementedError("TODO")
+        out = ""
+        for row in self.board:
+            out += (
+                " | ".join(f"{str(cell) if cell is not None else ' ':^10}" for cell in row)
+                + "\n"
+            )
+        return out
 
 
 board = Board(1, 2)
 board.drop_disk(0, Disk("red"))
 board.drop_disk(0, Disk("yellow"))
 
-print(board.board)
+print(board)

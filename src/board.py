@@ -109,16 +109,3 @@ class Board:
                 + "\n"
             )
         return out
-
-
-board = Board(1, 2)
-board.drop_disk(0, Disk("red"))
-board.drop_disk(0, Disk("yellow"))
-board.drop_disk(1, Disk("yellow"))
-board.drop_disk(2, Disk("yellow"))
-board.drop_disk(3, Disk("yellow"))
-board.drop_disk(4, Disk("yellow"))
-is_winner = board.check_winner()
-
-print(board)
-print(is_winner)

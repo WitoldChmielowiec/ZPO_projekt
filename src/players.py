@@ -13,6 +13,12 @@ class Player:
     def make_move(self, board):
         raise NotImplementedError("Subclass")
 
+    def __str__(self):
+        return self.name
+
+    def __repr__(self):
+        return f"Player(name={self.name}, color={self.color})"
+
 
 class HumanPlayer(Player):
     def make_move(self, board):

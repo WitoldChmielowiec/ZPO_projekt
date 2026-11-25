@@ -32,6 +32,7 @@ class Board:
         self.player1 = player1
         self.player2 = player2
         self.board = [[None for _ in range(7)] for _ in range(6)]
+        self.current_player = self.player1
 
     def drop_disk(self, column, disk):
         for row in reversed(range(6)):
@@ -55,7 +56,7 @@ class Board:
                     row[i] is not None
                     and row[i] == row[i + 1] == row[i + 2] == row[i + 3]
                 ):
-                    return row[i]
+                    return self.get_player_from_disk(row[i])
 
         # kolumny
         for col in range(7):
@@ -67,7 +68,7 @@ class Board:
                     == self.board[row + 2][col]
                     == self.board[row + 3][col]
                 ):
-                    return self.board[row][col]
+                    return self.get_player_from_disk(self.board[row][col])
 
         # przekatne
         for row in range(3):
@@ -79,7 +80,7 @@ class Board:
                     == self.board[row + 2][col + 2]
                     == self.board[row + 3][col + 3]
                 ):
-                    return self.board[row][col]
+                    return self.get_player_from_disk(self.board[row][col])
                 if (
                     self.board[row][6 - col] is not None
                     and self.board[row][6 - col]
@@ -87,9 +88,24 @@ class Board:
                     == self.board[row + 2][4 - col]
                     == self.board[row + 3][3 - col]
                 ):
-                    return self.board[row][6 - col]
+                    return self.get_player_from_disk(self.board[row][6 - col])
 
         return None
+
+    def next_move(self):
+        self.current_player.make_move(self)
+        if self.current_player == self.player1:
+            self.current_player = self.player2
+        else:
+            self.current_player = self.player1
+
+    def get_player_from_disk(self, disk):
+        if disk.color == self.player1.color:
+            return self.player1
+        elif disk.color == self.player2.color:
+            return self.player2
+        else:
+            return None
 
     def draw(self, surface):
         raise NotImplementedError("TODO")

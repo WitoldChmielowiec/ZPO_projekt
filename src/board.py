@@ -35,6 +35,9 @@ class Board:
         self.current_player = self.player1
 
     def drop_disk(self, column, disk):
+        if column < 0 or column >= 7:
+            return False
+
         for row in reversed(range(6)):
             if self.board[row][column] is None:
                 self.board[row][column] = disk

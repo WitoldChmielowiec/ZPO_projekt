@@ -19,7 +19,7 @@ class Disk:
         return self.color
 
     def __repr__(self):
-        return self.color
+        return f"Disk({self.color})"
 
     def __eq__(self, other):
         if isinstance(other, Disk):

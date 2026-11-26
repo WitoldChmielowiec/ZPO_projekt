@@ -118,7 +118,7 @@ class Board:
         for row in self.board:
             out += (
                 " | ".join(
-                    f"{str(cell) if cell is not None else ' ':^10}" for cell in row
+                    f"{str(cell) if cell is not None else ' ':^3}" for cell in row
                 )
                 + "\n"
             )
